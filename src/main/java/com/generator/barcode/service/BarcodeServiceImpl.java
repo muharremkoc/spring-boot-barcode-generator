@@ -77,7 +77,7 @@ public class BarcodeServiceImpl implements BarcodeService{
             userList.forEach(user -> {
 
                 Map<EncodeHintType, Object> hints = new HashMap<>();
-                hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+                hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
                 hints.put(EncodeHintType.MARGIN, 1);
 
                 BitMatrix bitMatrix = null;
@@ -85,7 +85,7 @@ public class BarcodeServiceImpl implements BarcodeService{
                 try {
                     ObjectMapper objectMapper = new ObjectMapper();
                     String jsonText = objectMapper.writeValueAsString(user);
-                    bitMatrix = new MultiFormatWriter().encode("User{ id="+user.getId()+"firstname="+user.getFirstName()+"lastName="+user.getLastName()+"}", BarcodeFormat.CODE_128, 200, 200);
+                    bitMatrix = new MultiFormatWriter().encode(user.toString(), BarcodeFormat.PDF_417, 200, 100);
                 } catch (WriterException e) {
                     throw new RuntimeException(e);
                 } catch (JsonProcessingException e) {

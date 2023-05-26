@@ -47,10 +47,10 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format(
-
-                "id %s"+"%n"+
-                "firstname %s"+ "%n"+
-                "lastname %s",id,firstName,lastName);
+        return "User{\n" +
+                "id= " + id +
+                "\nfirstName= " + firstName  +
+                "\nlastName= " + lastName  +
+                "\n}";
     }
 }
